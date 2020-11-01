@@ -1,0 +1,117 @@
+﻿@model IEnumerable<GreatShop.Models.Product>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=2">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+
+
+        /* Remove the jumbotron's default bottom margin */
+        .jumbotron {
+            background-image: url('https://www.carscoops.com/wp-content/uploads/webp/2020/02/Ford-Performance-1024x555.webp');
+            background-size: cover;
+            background-repeat: no-repeat;
+            width:auto;
+
+        }
+
+        /* Add a gray background color and some padding to the footer */
+        .footer {
+            background-color: #f2f2f2;
+            padding: 25px;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            width: 15%;
+            display: inline-block;
+            overflow-x: hidden;
+            
+        }
+
+        .pricetext {
+            text-shadow: 0 0 3px #FFF000, 0 0 5px #FFFF00;
+            overflow-x: hidden;
+        }
+
+        .scrolling-wrapper {
+            overflow-x: scroll;
+            overflow-y: hidden;
+            white-space: nowrap;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+        .container {
+            padding: 2px 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="jumbotron jumbotron-fluid">
+
+        <div class="container text-center" style="height:300px;">
+            <h1 style="color:goldenrod;">GreatShop</h1>
+            <p style="color:darkblue;">Performance Shop</p>
+
+        </div>
+
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">CLEARANCE</div>
+                    <div class="panel-body"><img src="~/Images/Company/Clearance3.jpg" class="img-responsive" height="500" alt="Image"></div>
+
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">TODAYS HOT DEALS</div>
+                    <div class="panel-body"><img src="~/Images/Company/sale-tag.png" class="img-responsive" width="700" alt="Sale"></div>
+
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="panel panel-success">
+                    <div class="panel-heading">BLACK FRIDAY DEAL</div>
+                    <div class="panel-body"><img src="~/Images/Company/bfriday.png" class="img-responsive" width="700" alt="Image"></div>
+
+                </div>
+            </div>
+        </div>
+    </div><br>
+
+    <div class="scrolling-wrapper">
+        @foreach (var obj in Model)
+        {
+
+            <div class="card">
+                <img class="card-img mx-auto" src="@WebConstants.ImagePath@obj.Image" class="rounded" width="100" height="100" />
+                <h4><b>@obj.Name</b></h4>
+                <h4 class="pricetext"><b>@obj.Cost</b></h4>
+            </div>
+        }
+
+        <
+    </div><br><br>
+
+    <footer class="container-fluid text-center">
+        <p>Online Store Copyright</p>
+        <form class="form-inline">
+            Get deals:
+            <input type="email" class="form-control" size="50" placeholder="Email Address">
+            <button type="button" class="btn btn-danger">Sign Up</button>
+        </form>
+    </footer>
+
+</body>

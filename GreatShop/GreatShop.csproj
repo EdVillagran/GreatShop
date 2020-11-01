@@ -1,0 +1,166 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\Galaxys10.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Views\Home\Logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Views\Home\Logo.png">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Category\Create.cshtml" />
+    <None Include="Views\Category\Delete.cshtml" />
+    <None Include="Views\Category\Edit.cshtml" />
+    <None Include="Views\Category\Index.cshtml" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\bootstrap-select.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\bootstrap-select.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-am_ET.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-am_ET.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-ar_AR.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-ar_AR.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-bg_BG.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-bg_BG.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-cs_CZ.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-cs_CZ.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-da_DK.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-da_DK.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-de_DE.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-de_DE.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-en_US.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-en_US.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-es_CL.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-es_CL.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-es_ES.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-es_ES.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-et_EE.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-et_EE.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-eu.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-eu.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-fa_IR.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-fa_IR.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-fi_FI.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-fi_FI.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-fr_FR.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-fr_FR.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-hr_HR.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-hr_HR.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-hu_HU.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-hu_HU.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-id_ID.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-id_ID.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-it_IT.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-it_IT.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-ja_JP.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-ja_JP.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-kh_KM.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-kh_KM.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-ko_KR.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-ko_KR.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-lt_LT.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-lt_LT.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-lv_LV.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-lv_LV.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-nb_NO.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-nb_NO.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-nl_NL.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-nl_NL.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-pl_PL.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-pl_PL.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-pt_BR.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-pt_BR.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-pt_PT.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-pt_PT.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-ro_RO.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-ro_RO.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-ru_RU.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-ru_RU.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-sk_SK.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-sk_SK.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-sl_SI.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-sl_SI.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-sv_SE.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-sv_SE.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-tr_TR.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-tr_TR.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-ua_UA.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-ua_UA.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-vi_VN.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-vi_VN.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-zh_CN.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-zh_CN.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-zh_TW.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap-select\js\i18n\defaults-zh_TW.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap\js\bootstrap.bundle.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap\js\bootstrap.js" />
+    <None Include="wwwroot\distribution\vendor\bootstrap\js\bootstrap.min.js" />
+    <None Include="wwwroot\distribution\vendor\jquery.cookie\jquery.cookie.js" />
+    <None Include="wwwroot\distribution\vendor\jquery\jquery.js" />
+    <None Include="wwwroot\distribution\vendor\jquery\jquery.min.js" />
+    <None Include="wwwroot\distribution\vendor\jquery\jquery.slim.js" />
+    <None Include="wwwroot\distribution\vendor\jquery\jquery.slim.min.js" />
+    <None Include="wwwroot\distribution\vendor\lightbox2\js\lightbox-plus-jquery.js" />
+    <None Include="wwwroot\distribution\vendor\lightbox2\js\lightbox-plus-jquery.min.js" />
+    <None Include="wwwroot\distribution\vendor\lightbox2\js\lightbox.js" />
+    <None Include="wwwroot\distribution\vendor\lightbox2\js\lightbox.min.js" />
+    <None Include="wwwroot\distribution\vendor\node-sass\binding.gyp" />
+    <None Include="wwwroot\distribution\vendor\node-sass\bin\emcc" />
+    <None Include="wwwroot\distribution\vendor\node-sass\bin\node-sass" />
+    <None Include="wwwroot\distribution\vendor\node-sass\lib\binding.js" />
+    <None Include="wwwroot\distribution\vendor\node-sass\lib\errors.js" />
+    <None Include="wwwroot\distribution\vendor\node-sass\lib\extensions.js" />
+    <None Include="wwwroot\distribution\vendor\node-sass\lib\index.js" />
+    <None Include="wwwroot\distribution\vendor\node-sass\lib\render.js" />
+    <None Include="wwwroot\distribution\vendor\node-sass\lib\watcher.js" />
+    <None Include="wwwroot\distribution\vendor\node-sass\node_modules\cross-spawn\index.js" />
+    <None Include="wwwroot\distribution\vendor\node-sass\node_modules\cross-spawn\lib\enoent.js" />
+    <None Include="wwwroot\distribution\vendor\node-sass\node_modules\cross-spawn\lib\parse.js" />
+    <None Include="wwwroot\distribution\vendor\node-sass\node_modules\cross-spawn\lib\resolveCommand.js" />
+    <None Include="wwwroot\distribution\vendor\node-sass\scripts\build.js" />
+    <None Include="wwwroot\distribution\vendor\node-sass\scripts\coverage.js" />
+    <None Include="wwwroot\distribution\vendor\node-sass\scripts\install.js" />
+    <None Include="wwwroot\distribution\vendor\node-sass\scripts\prepublish.js" />
+    <None Include="wwwroot\distribution\vendor\node-sass\scripts\util\downloadoptions.js" />
+    <None Include="wwwroot\distribution\vendor\node-sass\scripts\util\proxy.js" />
+    <None Include="wwwroot\distribution\vendor\node-sass\scripts\util\useragent.js" />
+    <None Include="wwwroot\distribution\vendor\node-sass\vendor\linux-x64-64\binding.node" />
+    <None Include="wwwroot\distribution\vendor\nouislider\CHANGELOG.MD" />
+    <None Include="wwwroot\distribution\vendor\nouislider\nouislider.js" />
+    <None Include="wwwroot\distribution\vendor\nouislider\nouislider.min.js" />
+    <None Include="wwwroot\distribution\vendor\owl.carousel2.thumbs\owl.carousel2.thumbs.js" />
+    <None Include="wwwroot\distribution\vendor\owl.carousel2.thumbs\owl.carousel2.thumbs.min.js" />
+    <None Include="wwwroot\distribution\vendor\owl.carousel2\owl.carousel.js" />
+    <None Include="wwwroot\distribution\vendor\owl.carousel2\owl.carousel.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.9">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.0-rc.1.20453.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\distribution\vendor\jquery.cookie\test\" />
+    <Folder Include="wwwroot\distribution\vendor\node-sass\src\" />
+    <Folder Include="wwwroot\distribution\vendor\node-sass\test\" />
+    <Folder Include="wwwroot\distribution\vendor\nouislider\distribute\" />
+    <Folder Include="wwwroot\Images\Product\" />
+  </ItemGroup>
+
+</Project>
