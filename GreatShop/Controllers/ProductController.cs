@@ -1,6 +1,7 @@
 ﻿using GreatShop.Data;
 using GreatShop.Models;
 using GreatShop.Models.ViewModels;
+using GreatShop.Utility;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -27,26 +28,28 @@ namespace GreatShop.Controllers
             _db = db;
             _webHostEnvironment = webHostEnvironment;
         }
-        public IActionResult Index()
+        public IActionResult AdminIndex()
         {
             //Retrieve objects from database
 
             IEnumerable<Product> objList = _db.Product;
-
-            //Because we have public virtual Category Category on Product Model 
-            //And have a foreign Key of Category Id\
-            //
-            // This will load WHERE Product.CategoryID=Category.Id
-            //foreach(var obj in objList)
-            //{
-            //  obj.Category = _db.Category.FirstOrDefault(u => u.Id == obj.Category.Id);
-            //};
 
 
 
             return View(objList);
 
         }
+
+        public IActionResult Index()
+        {
+            CategoryVM categoryVM = new CategoryVM()
+            {
+                Products = _db.Product.Include(u => u.Category),
+                Category = _db.Category
+            };
+            return View(categoryVM);
+        }
+
         //GET--  Upsert-Edit product by taking in current obj.id
 
         public IActionResult Upsert(int? id)
@@ -99,7 +102,7 @@ namespace GreatShop.Controllers
         //POST
         //Recieves object to add to database as argument
         [HttpPost]
-        [ValidateAntiForgeryToken]  //Validate Post is valid and has not been tampered
+       
         public IActionResult Upsert(ProductVM productVM)
         {
             if (ModelState.IsValid)
@@ -164,7 +167,7 @@ namespace GreatShop.Controllers
                 Text = i.Name,
                 Value = i.Id.ToString()
             });
-           
+            
             return View(productVM);
 
         }
@@ -244,6 +247,68 @@ namespace GreatShop.Controllers
                 return NotFound();
 
         }
+        public IActionResult Details(int id)
+        {
+            List<ShoppingCart> shoppingCartList = new List<ShoppingCart>();
+            if (HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstants.SessionCart) != null
+                && HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstants.SessionCart).Count() > 0)
+            {
+                shoppingCartList = HttpContext.Session.Get<List<ShoppingCart>>(WebConstants.SessionCart);
+            }
 
+
+
+            DetailsVM DetailsVM = new DetailsVM()
+            {
+                Product = _db.Product.Include(u => u.Category)
+                .Where(u => u.Id == id).FirstOrDefault(),
+                ExistInCart = false
+            };
+
+
+            foreach (var item in shoppingCartList)
+            {
+                if (item.ProductId == id)
+                {
+                    DetailsVM.ExistInCart = true;
+                }
+            }
+
+            return View(DetailsVM);
+        }
+
+        [HttpPost, ActionName("Details")]
+        public IActionResult DetailsPost(int id)
+        {
+            List<ShoppingCart> shoppingCartList = new List<ShoppingCart>();
+            if (HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstants.SessionCart) != null
+                && HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstants.SessionCart).Count() > 0)
+            {
+                shoppingCartList = HttpContext.Session.Get<List<ShoppingCart>>(WebConstants.SessionCart);
+            }
+            shoppingCartList.Add(new ShoppingCart { ProductId = id });
+
+            HttpContext.Session.Set(WebConstants.SessionCart, shoppingCartList);
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult RemoveFromCart(int id)
+        {
+            List<ShoppingCart> shoppingCartList = new List<ShoppingCart>();
+            if (HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstants.SessionCart) != null
+                && HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstants.SessionCart).Count() > 0)
+            {
+                shoppingCartList = HttpContext.Session.Get<List<ShoppingCart>>(WebConstants.SessionCart);
+            }
+
+            var itemToRemove = shoppingCartList.SingleOrDefault(r => r.ProductId == id);
+            if (itemToRemove != null)
+            {
+                shoppingCartList.Remove(itemToRemove);
+            }
+
+            HttpContext.Session.Set(WebConstants.SessionCart, shoppingCartList);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

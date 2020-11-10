@@ -46,7 +46,7 @@
                         <label asp-for="Product.Description"></label>
                     </div>
                     <div class="col-8">
-                        <textarea asp-for="Product.Description" rows="3" cols="45" class="form-control"></textarea> 
+                        <textarea asp-for="Product.Description" class="form-control summernote"></textarea>
                         <span asp-validation-for="Product.Description" class="text-danger"></span>
                     </div>
 
@@ -99,8 +99,7 @@
                 @* Keep this empty *@
                 @if (Model.Product.Id != 0)
                 {
-                    <img src="@WebConstants.ImagePath@Model.Product.Image" class="rounded" width="200" heigth="200" style="border-radius:5px;" />
-                    
+                    <img src="@WebConstants.ImagePath@Model.Product.Image" width="100%" style="border-radius:5px; border:1px solid #bbb" />
                 }
             </div>
         </div>
@@ -114,16 +113,11 @@
         <partial name="_ValidationScriptsPartial" />
     }
     <script>
-
-        //Summernote import
-
         $(document).ready(function () {
             $('.summernote').summernote({
                 height: 250
-               
             });
         });
-
         function validateInput() {
             if (document.getElementById("uploadBox").value == "") {
                 Swal.fire(

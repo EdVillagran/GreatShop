@@ -15,6 +15,7 @@
             background-size: cover;
             background-repeat: no-repeat;
             width:auto;
+            height:auto;
 
         }
 
@@ -34,7 +35,7 @@
         }
 
         .pricetext {
-            text-shadow: 0 0 3px #FFF000, 0 0 5px #FFFF00;
+            
             overflow-x: hidden;
         }
 
@@ -48,7 +49,7 @@
             box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
         }
 
-        .container {
+        .container2 {
             padding: 2px 16px;
         }
     </style>
@@ -57,15 +58,15 @@
 
     <div class="jumbotron jumbotron-fluid">
 
-        <div class="container text-center" style="height:300px;">
+        <div class="container2 text-center" style="height:300px;">
             <h1 style="color:goldenrod;">GreatShop</h1>
             <p style="color:darkblue;">Performance Shop</p>
 
         </div>
 
     </div>
-
-    <div class="container">
+   
+    <div class="container2">
         <div class="row">
             <div class="col-sm-4">
                 <div class="panel panel-primary">
@@ -96,9 +97,9 @@
         {
 
             <div class="card">
-                <img class="card-img mx-auto" src="@WebConstants.ImagePath@obj.Image" class="rounded" width="100" height="100" />
+                <img class="card-img mx-auto" src="@WebConstants.ImagePath@obj.Image"width="100" height="100" />
                 <h4><b>@obj.Name</b></h4>
-                <h4 class="pricetext"><b>@obj.Cost</b></h4>
+                <h4 class="pricetext"><b>@string.Format("{0:c0}", @obj.Cost)</b></h4>
             </div>
         }
 

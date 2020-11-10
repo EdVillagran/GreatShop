@@ -16,10 +16,6 @@ namespace GreatShop.Models
         [Required]
         public string Name { get; set; }
 
-        [Display(Name=("Display Order"))]
-        [Required]
-        [Range(1, int.MaxValue, ErrorMessage = "Display Order Must be greater than 0")]
-        public int DisplayOrder { get; set; }
 
 
         
