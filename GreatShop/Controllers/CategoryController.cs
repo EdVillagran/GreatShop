@@ -1,10 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using GreatShop.Data;
+﻿using GreatShop.Data;
 using GreatShop.Models;
-using System;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GreatShop.Controllers
 {
@@ -148,9 +145,9 @@ namespace GreatShop.Controllers
             //Get object from DB using id
             var obj = _db.Category.Find(id);
 
-            if (obj !=null)
+            if (obj != null)
             {
-                
+
                 //Add object to DB
                 _db.Category.Remove(obj);
 

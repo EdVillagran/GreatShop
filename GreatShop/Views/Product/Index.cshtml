@@ -1,26 +1,104 @@
 ﻿@model GreatShop.Models.ViewModels.CategoryVM
+<head>
 
-<div class="container">
-    <div class="text-center">
-        <button class="btn btn-dark filter-button" data-filter="all">All</button>
-        @foreach (var obj in Model.Category)
-        {
-            <button class="btn btn-outline-secondary filter-button" data-filter="@obj.Name.Replace(' ','_')">
-                @obj.Name
-            </button>
-        }
-    </div>
-    <br />
-    <div class="row">
-        @foreach (var prod in Model.Products)
-        {
-            <partial name="_IndividualProductCard" model="prod" />
-            //display all product
-        }
-    </div>
-</div>
 
-@section Scripts{
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/ProductHome.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-3">
+
+                <button class="btn btn-dark filter-button" data-filter="all">All</button><br></br>
+
+                @foreach (var obj in Model.Category)
+                {
+    <button class="btn btn-outline-secondary filter-button" data-filter="@obj.Name.Replace(' ','_')">
+        @obj.Name
+    </button>
+                    <br>}
+
+
+            </div>
+            <!-- /.col-lg-3 -->
+
+            <div class="col-lg-9">
+
+                <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+                    <ol class="carousel-indicators text-success">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner" role="listbox">
+                        <div class="carousel-item active">
+                            <a href="/Product/Details/11">
+                                <img class="d-block img-fluid" src="~/Images/Product/eb8c20bf-20e7-4f19-a963-7624ac1ee470.jpg" alt="First slide" width="400">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="/Product/Details/20">
+                                <img class="d-block img-fluid" src="~/Images/Product/8290e74a-30de-41b4-b69d-a3447d4020aa.jpg" alt="Second slide" width="400">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="/Product/Details/14">
+                                <img class="d-block img-fluid" src="~/Images/Product/350b065d-18ba-4849-8af4-5b3129116537.jpg" alt="Third slide" width="400">
+                            </a>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+
+                <div class="row">
+
+                    @foreach (var prod in Model.Products)
+                    {
+        <partial name="_IndividualProductCard" model="prod" />//display all product
+    }
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+    </div>
+    <!-- /.container -->
+    <!-- Footer -->
+    <!-- Bootstrap core JavaScript  and JQuery-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
     <script>
         $(document).ready(function () {
             $(".filter-button").click(function () {
@@ -34,5 +112,8 @@
                 }
             });
         });
+
     </script>
-}
+
+</body>
+

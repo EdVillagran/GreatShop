@@ -1,68 +1,51 @@
 ﻿@page
 @model LoginModel
+@{ ViewData["Title"] = "GreatShop"; }
 
-@{
-    ViewData["Title"] = "GreatShop";
-}
+
 <head>
-    <style>
-        .center {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 50%;
-        }
-    </style>
+    <!-- Custom styles for this template -->
+    <link href="/css/signin.css" rel="stylesheet">
 </head>
-<h1>@ViewData["Title"]</h1>
-<div class="row">
-    <div class="col-md-4">
-        <section>
-            <form id="account" method="post">
-                <h4>Log in.</h4>
-                <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Input.Email"></label>
-                    <input asp-for="Input.Email" class="form-control" />
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Input.Password"></label>
-                    <input asp-for="Input.Password" class="form-control" />
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label asp-for="Input.RememberMe">
-                            <input asp-for="Input.RememberMe" />
-                            @Html.DisplayNameFor(m => m.Input.RememberMe)
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Log in</button>
-                </div>
-                <div class="form-group">
-                    <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                    </p>
-                    <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                    </p>
-                    <p>
-                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-                    </p>
-                </div>
-            </form>
-        </section>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <img src="~/Images/Company/Logo.png" height="350"  width="450" class="center" />
-        </section>
-    </div>
-</div>
+
+<body2 class="text-center">
+
+    <form class="form-signin" method="post">
+        <img class="mb-4" src="~/Images/Company/Logo.png" alt="" width="250" height="250">
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+        <label asp-for="Input.Email" class="sr-only">Email address</label>
+        <input type="email" asp-for="Input.Email" class="form-control" placeholder="Email address" required autofocus>
+        <span asp-validation-for="Input.Email" class="text-danger"></span>
+
+        <label asp-for="Input.Password" class="sr-only">Password</label>
+        <input type="password" asp-for="Input.Password" class="form-control" placeholder="Password" required>
+        <span asp-validation-for="Input.Password" class="text-danger"></span>
+
+        <div class="checkbox mb-3">
+            <label asp-for="Input.RememberMe">
+                <input asp-for="Input.RememberMe" />
+                @Html.DisplayNameFor(m => m.Input.RememberMe)
+            </label>
+            </br>
+            <a href="/Identity/Account/Register">Don't Have An Account Yet?</a>
+        </div>
+        <button id="signbtn" class="btn btn-success btn-primary btn-block" type="submit">Sign in</button>
+
+        <div class="form-group">
+            <p>
+                <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+            </p>
+           
+            <p>
+                <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+            </p>
+        </div>
+        <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
+    </form>
+</body2>
+
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

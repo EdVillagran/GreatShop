@@ -5,7 +5,6 @@ using GreatShop.Utility;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -76,130 +75,130 @@ namespace GreatShop.Controllers
                 //Populate using eager loading 
                 Product = new Product(),
                 Products = productList,
-                Quantities=quantities
+                Quantities = quantities
 
-        };
-
-            return View(shoppingCartVM);
-    }
-
-    //POST
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    [ActionName("Index")]
-    public IActionResult IndexPost()
-    {
-
-        return RedirectToAction(nameof(Summary));
-    }
-
-
-    //Add the Quantity Here
-    public IActionResult Summary()
-    {
-        var claimsIdentity = (ClaimsIdentity)User.Identity;
-
-        //Claim is coming null if no one loggs in
-        var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-
-        //var userId = User.FindFirstValue(ClaimTypes.Name); //Anyther way of doing it
-
-        List<ShoppingCart> shoppingCartList = new List<ShoppingCart>();
-        if (HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstants.SessionCart) != null
-            && HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstants.SessionCart).Count() > 0)
-        {
-            //session exsits
-            shoppingCartList = HttpContext.Session.Get<List<ShoppingCart>>(WebConstants.SessionCart);
-        }
-
-        List<int> prodInCart = shoppingCartList.Select(i => i.ProductId).ToList();
-        IEnumerable<Product> prodList = _db.Product.Where(u => prodInCart.Contains(u.Id));
-
-        if (claim != null)
-        {
-
-
-            ProductUserVM = new ProductUserVM()
-            {
-                AppUser = _db.AppUser.FirstOrDefault(u => u.Id == claim.Value),
-                ProductList = prodList.ToList()
             };
 
-
-            return View(ProductUserVM);
+            return View(shoppingCartVM);
         }
-        return View();
-    }
 
-    public IActionResult Remove(int id)
-    {
-        List<ShoppingCart> shoppingCartList = new List<ShoppingCart>();
-        if (HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstants.SessionCart) != null
-            && HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstants.SessionCart).Count() > 0)
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Index")]
+        public IActionResult IndexPost()
         {
-            //Items Exist so 
-            shoppingCartList = HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstants.SessionCart).ToList();
+
+            return RedirectToAction(nameof(Summary));
         }
-        //Remove Item from Cart
-        shoppingCartList.Remove(shoppingCartList.FirstOrDefault(u => u.ProductId == id));
-
-        HttpContext.Session.Set(WebConstants.SessionCart, shoppingCartList);
 
 
-        return RedirectToAction(nameof(Index));
-    }
-
-    //POST- For Submit
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    [ActionName("Summary")]
-
-    public async Task<IActionResult> SummaryPostAsync()  // Dont need (ProductUserVM productUserVM) because of [BindProperty]
-    {
-        //1 Send Email, then comfirmation page
-
-        //Access template
-        var PathtoTemplates = _webHostEnvironment.WebRootPath + Path.DirectorySeparatorChar.ToString()
-            + "Templates" + Path.DirectorySeparatorChar.ToString() + "OrderInquiry.html";
-
-        var subject = "Order Summary";
-        string HtmlBody = "";
-        using (StreamReader sr = System.IO.File.OpenText(PathtoTemplates))
+        //Add the Quantity Here
+        public IActionResult Summary()
         {
-            HtmlBody = sr.ReadToEnd();
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+
+            //Claim is coming null if no one loggs in
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+            //var userId = User.FindFirstValue(ClaimTypes.Name); //Anyther way of doing it
+
+            List<ShoppingCart> shoppingCartList = new List<ShoppingCart>();
+            if (HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstants.SessionCart) != null
+                && HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstants.SessionCart).Count() > 0)
+            {
+                //session exsits
+                shoppingCartList = HttpContext.Session.Get<List<ShoppingCart>>(WebConstants.SessionCart);
+            }
+
+            List<int> prodInCart = shoppingCartList.Select(i => i.ProductId).ToList();
+            IEnumerable<Product> prodList = _db.Product.Where(u => prodInCart.Contains(u.Id));
+
+            if (claim != null)
+            {
+
+
+                ProductUserVM = new ProductUserVM()
+                {
+                    AppUser = _db.AppUser.FirstOrDefault(u => u.Id == claim.Value),
+                    ProductList = prodList.ToList()
+                };
+
+
+                return View(ProductUserVM);
+            }
+            return View();
         }
-        //Name: { 0}
-        //Email: { 1}
-        //Phone: { 2}
-        //Products: {3}
 
-        //To build the body of messaage
-        StringBuilder productListSB = new StringBuilder();
-
-        foreach (var prod in ProductUserVM.ProductList)
+        public IActionResult Remove(int id)
         {
-            productListSB.Append($" - Name: { prod.Name} <span style='font-size:14px;'> (ID: {prod.Id})</span><br />");
+            List<ShoppingCart> shoppingCartList = new List<ShoppingCart>();
+            if (HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstants.SessionCart) != null
+                && HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstants.SessionCart).Count() > 0)
+            {
+                //Items Exist so 
+                shoppingCartList = HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstants.SessionCart).ToList();
+            }
+            //Remove Item from Cart
+            shoppingCartList.Remove(shoppingCartList.FirstOrDefault(u => u.ProductId == id));
+
+            HttpContext.Session.Set(WebConstants.SessionCart, shoppingCartList);
+
+
+            return RedirectToAction(nameof(Index));
         }
 
-        string messageBody = string.Format(HtmlBody,
-            ProductUserVM.AppUser.FullName,
-            ProductUserVM.AppUser.Email,
-            ProductUserVM.AppUser.PhoneNumber,
-            productListSB.ToString());
-            
+        //POST- For Submit
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Summary")]
 
-        //SendEmailAsync takes in RecievingEmail, Subject, Message as paramaters
-        await _emailSender.SendEmailAsync(WebConstants.EmailAdmin, subject, messageBody);
-        //Add Another to User
+        public async Task<IActionResult> SummaryPostAsync()  // Dont need (ProductUserVM productUserVM) because of [BindProperty]
+        {
+            //1 Send Email, then comfirmation page
 
-        return RedirectToAction(nameof(OrderConfirmation));
+            //Access template
+            var PathtoTemplates = _webHostEnvironment.WebRootPath + Path.DirectorySeparatorChar.ToString()
+                + "Templates" + Path.DirectorySeparatorChar.ToString() + "OrderInquiry.html";
+
+            var subject = "Order Summary";
+            string HtmlBody = "";
+            using (StreamReader sr = System.IO.File.OpenText(PathtoTemplates))
+            {
+                HtmlBody = sr.ReadToEnd();
+            }
+            //Name: { 0}
+            //Email: { 1}
+            //Phone: { 2}
+            //Products: {3}
+
+            //To build the body of messaage
+            StringBuilder productListSB = new StringBuilder();
+
+            foreach (var prod in ProductUserVM.ProductList)
+            {
+                productListSB.Append($" - Name: { prod.Name} <span style='font-size:14px;'> (ID: {prod.Id})</span><br />");
+            }
+
+            string messageBody = string.Format(HtmlBody,
+                ProductUserVM.AppUser.FullName,
+                ProductUserVM.AppUser.Email,
+                ProductUserVM.AppUser.PhoneNumber,
+                productListSB.ToString());
+
+
+            //SendEmailAsync takes in RecievingEmail, Subject, Message as paramaters
+            await _emailSender.SendEmailAsync(WebConstants.EmailAdmin, subject, messageBody);
+            //Add Another to User
+
+            return RedirectToAction(nameof(OrderConfirmation));
+        }
+        public IActionResult OrderConfirmation()
+        {
+            HttpContext.Session.Clear();
+            return View();
+        }
+
+
     }
-    public IActionResult OrderConfirmation()
-    {
-        HttpContext.Session.Clear();
-        return View();
-    }
-
-
-}
 }

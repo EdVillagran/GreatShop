@@ -10,7 +10,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace GreatShop.Controllers
 {
@@ -102,7 +101,7 @@ namespace GreatShop.Controllers
         //POST
         //Recieves object to add to database as argument
         [HttpPost]
-       
+
         public IActionResult Upsert(ProductVM productVM)
         {
             if (ModelState.IsValid)
@@ -167,7 +166,7 @@ namespace GreatShop.Controllers
                 Text = i.Name,
                 Value = i.Id.ToString()
             });
-            
+
             return View(productVM);
 
         }
