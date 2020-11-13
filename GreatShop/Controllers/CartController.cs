@@ -5,6 +5,7 @@ using GreatShop.Utility;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -121,7 +122,8 @@ namespace GreatShop.Controllers
                 ProductUserVM = new ProductUserVM()
                 {
                     AppUser = _db.AppUser.FirstOrDefault(u => u.Id == claim.Value),
-                    ProductList = prodList.ToList()
+                    ProductList = prodList.ToList(),
+                    
                 };
 
 
@@ -179,6 +181,8 @@ namespace GreatShop.Controllers
             {
                 productListSB.Append($" - Name: { prod.Name} <span style='font-size:14px;'> (ID: {prod.Id})</span><br />");
             }
+
+     
 
             string messageBody = string.Format(HtmlBody,
                 ProductUserVM.AppUser.FullName,

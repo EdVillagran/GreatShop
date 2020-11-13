@@ -1,4 +1,8 @@
-﻿@model GreatShop.Models.ViewModels.ShoppingCartVM
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+
+@model GreatShop.Models.ViewModels.ShoppingCartVM
 
 
 @if (Model.Products.Count() > 0)
@@ -20,7 +24,7 @@
                                 Shopping Cart
                             </div>
                             <div class="col-6 text-right">
-                                <a asp-action="Index" asp-controller="Home" class="btn btn-outline-info btn-sm">Continue Shopping</a>
+                                <a asp-action="Index" asp-controller="Product" class="btn btn-outline-info btn-sm">Continue Shopping</a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -42,49 +46,49 @@
                                 </div>
                             </div>
                             <!--
-    <hr />
-    @foreach (var obj in Model.Products)
-    {
-        <div class="row h-100">
-            <div class="col-4 col-md-2 text-center py-2">
-                <img src="@WebConstants.ImagePath@obj.Image" class="rounded" width="100%" />
-            </div>
-            <div class="col-4 col-lg-7">
-                <h5>@obj.Name</h5>
-                <div style="font-size:11px;">@obj.Description</div>
-            </div>
-            <div class="col-3 col-lg-1 pt-lg-4" style="font-size:11px;">
-                <span style="font-size:17px;"> $@obj.Cost</span>
+                            <hr />
+                            @foreach (var obj in Model.Products)
+                            {
+                                <div class="row h-100">
+                                    <div class="col-4 col-md-2 text-center py-2">
+                                        <img src="@WebConstants.ImagePath@obj.Image" class="rounded" width="100%" />
+                                    </div>
+                                    <div class="col-4 col-lg-7">
+                                        <h5>@obj.Name</h5>
+                                        <div style="font-size:11px;">@obj.Description</div>
+                                    </div>
+                                    <div class="col-3 col-lg-1 pt-lg-4" style="font-size:11px;">
+                                        <span style="font-size:17px;"> $@obj.Cost</span>
 
-            </div>
+                                    </div>
 
-            <div class="col-3 col-lg-1 pt-lg-4" style="font-size:11px;">
-
-
-
-            </div>
+                                    <div class="col-3 col-lg-1 pt-lg-4" style="font-size:11px;">
 
 
 
-            <div class="col-2 col-lg-1 p-0 pt-lg-4 text-center">
-                <a asp-action="Remove" asp-route-id="@obj.Id" class="btn btn-outline-danger">
-                    <i class="fas fa-trash"></i>
-                </a>
-            </div>
+                                    </div>
 
 
 
-        </div>
+                                    <div class="col-2 col-lg-1 p-0 pt-lg-4 text-center">
+                                        <a asp-action="Remove" asp-route-id="@obj.Id" class="btn btn-outline-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </div>
 
 
-    }
-                                <hr />-->
+
+                                </div>
+
+
+                            }
+                                                        <hr />-->
                             <hr />
                             @{ var index = 0;
                             }
                             @foreach (var obj in Model.Products)
                             {
-                                var quantity = 0;
+
 
                                 <div class="row h-100">
                                     <div class="col-4 col-md-2 text-center py-2">
@@ -101,8 +105,12 @@
 
                                     <div class="col-3 col-lg-1 pt-lg-4" style="font-size:11px;">
 
-                                        <input id=quantity value="1" min="1" runat="server" class="form-control" />
-                                        
+
+                                        <label asp-for="@Model.Quantities[index]"></label>
+                                        <input asp-for="@Model.Quantities[index]" class="form-control" width="100" />
+                                        <span asp-validation-for="@Model.Quantities[index]" class="text-danger"></span>
+
+
 
 
                                     </div>
@@ -118,7 +126,7 @@
 
 
                                 </div>
-                                Model.Quantities[index] = quantity;
+                                //odel.Quantities[index] = quantity;
                                 index += 1;
 
 
@@ -129,9 +137,22 @@
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-6 col-md-3 offset-md-9">
-                                    <button type="submit" id="submitbtn" class="btn btn-success form-control ">
-                                        <span>Continue</span>
-                                    </button>
+
+                                    <!-- They Should Not be able to checkout without loging in -->
+                                    <ul class="navbar-nav">
+                                        @if (SignInManager.IsSignedIn(User))
+                                        {
+                                            <button type="submit" id="submitbtn" class="btn btn-success form-control ">
+                                                <span>Continue</span>
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <a href="/Identity/Account/Login" class="btn btn-primary btn-outline-success btn-lg">Log In</a>
+
+                                        }
+                                    </ul>
+
                                 </div>
                             </div>
                         </div>

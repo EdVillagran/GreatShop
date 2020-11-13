@@ -11,13 +11,12 @@
     <!-- Custom styles for this template -->
     <link href="~/css/ProductHome.css" rel="stylesheet">
 
+
 </head>
 
 <body>
 
-
-    <!-- Page Content -->
-    <div class="container">
+    <div class="container ">
 
         <div class="row">
 
@@ -39,8 +38,8 @@
             <div class="col-lg-9">
 
                 <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
-                    <ol class="carousel-indicators text-success">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <ol class="carousel-indicators text-success ">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active "></li>
                         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                     </ol>
@@ -60,6 +59,14 @@
                                 <img class="d-block img-fluid" src="~/Images/Product/350b065d-18ba-4849-8af4-5b3129116537.jpg" alt="Third slide" width="400">
                             </a>
                         </div>
+                        @foreach (var prod in Model.Products)
+                        {
+            <div class="carousel-item">
+                <a href="/Product/Details/@prod.Id">
+                    <img class="d-block img-fluid" src="@WebConstants.ImagePath@prod.Image" alt="Third slide" width="400">
+                </a>
+            </div>            
+            }
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -69,6 +76,7 @@
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
                     </a>
+
                 </div>
 
                 <div class="row">

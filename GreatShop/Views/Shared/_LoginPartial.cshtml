@@ -11,23 +11,32 @@
         {
 
             <li class="nav-item">
-                <a class="nav-link text-white" asp-area="" asp-controller="Product" asp-action="AdminIndex">All Products</a>
+                <a id="manage" class="nav-link text-white-50" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserName(User) </a>
+
             </li>
+
             <li class="nav-item">
-                <a class="nav-link text-white" asp-area="" asp-controller="Category" asp-action="Index">Categories</a>
+                <div class="dropdown nav-link">
+                    <button class="btn btn-outline-info btn-group-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Admin
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="nav-link text-warning" asp-area="" asp-controller="Category" asp-action="Index">Categories</a>
+                        <a class="nav-link text-warning" asp-area="" asp-controller="Product" asp-action="AdminIndex">All Products</a>
+
+                    </div>
+                </div>
             </li>
+
         }
 
-
         <li class="nav-item">
-            <a id="manage" class="nav-link text-white-50" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserName(User) </a>
-
-        </li>
-        <li class="nav-item">
-            <form id="logoutForm" class="form-row" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <form id="logoutForm" class="nav-link text-white-50" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                 <button id="logout" type="submit" class="nav-link btn btn-link text-white">Logout</button>
             </form>
         </li>
+
+
     }
     else
     {
@@ -37,5 +46,8 @@
         <li class="nav-item">
             <a class="nav-link text-white" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
         </li>
+
     }
+
+
 </ul>

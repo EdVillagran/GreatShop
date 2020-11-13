@@ -5,7 +5,7 @@ namespace GreatShop.Models.ViewModels
 {
     public class ShoppingCartVM
     {
-        public ArrayList Quantities;
+        public ArrayList Quantities { get; set; }
         public Product Product { get; set; }
         public IEnumerable<Product> Products { get; set; }
 

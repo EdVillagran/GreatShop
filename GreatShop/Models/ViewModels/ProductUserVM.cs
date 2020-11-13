@@ -13,6 +13,6 @@ namespace GreatShop.Models.ViewModels
         public AppUser AppUser { get; set; }
         public IList<Product> ProductList { get; set; }
 
-        public ArrayList Quantities;
+        public ArrayList Quantities { get; set; }
     }
 }
