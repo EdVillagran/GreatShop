@@ -9,17 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Views\Home\Logo.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Views\Home\Logo.png">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="Views\Category\Create.cshtml" />
     <None Include="Views\Category\Delete.cshtml" />
     <None Include="Views\Category\Edit.cshtml" />

@@ -32,57 +32,20 @@
                                 <div class="row" style="color:#821f3d">
                                     <div class="col-lg-2">
                                     </div>
-                                    <div class="col-12 col-lg-7">
+                                    <div class="col-12 col-lg-5">
                                         Product Details
                                     </div>
-                                    <div class="col-6 col-md-2">
+                                    <div class="col-5 col-md-2">
                                         Price
                                     </div>
-                                    <div class="col-6 col-md-1">
+                                    <div class="col-3 col-md-2">
                                         Quantity
                                     </div>
                                     <div class="col-6 col-sm-4 col-lg-1">
                                     </div>
                                 </div>
                             </div>
-                            <!--
-                            <hr />
-                            @foreach (var obj in Model.Products)
-                            {
-                                <div class="row h-100">
-                                    <div class="col-4 col-md-2 text-center py-2">
-                                        <img src="@WebConstants.ImagePath@obj.Image" class="rounded" width="100%" />
-                                    </div>
-                                    <div class="col-4 col-lg-7">
-                                        <h5>@obj.Name</h5>
-                                        <div style="font-size:11px;">@obj.Description</div>
-                                    </div>
-                                    <div class="col-3 col-lg-1 pt-lg-4" style="font-size:11px;">
-                                        <span style="font-size:17px;"> $@obj.Cost</span>
 
-                                    </div>
-
-                                    <div class="col-3 col-lg-1 pt-lg-4" style="font-size:11px;">
-
-
-
-                                    </div>
-
-
-
-                                    <div class="col-2 col-lg-1 p-0 pt-lg-4 text-center">
-                                        <a asp-action="Remove" asp-route-id="@obj.Id" class="btn btn-outline-danger">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </div>
-
-
-
-                                </div>
-
-
-                            }
-                                                        <hr />-->
                             <hr />
                             @{ var index = 0;
                             }
@@ -94,30 +57,24 @@
                                     <div class="col-4 col-md-2 text-center py-2">
                                         <img src="@WebConstants.ImagePath@obj.Image" class="rounded" width="100%" />
                                     </div>
-                                    <div class="col-4 col-lg-7">
+                                    <div class="col-4 col-lg-5">
                                         <h5>@obj.Name</h5>
                                         <div style="font-size:11px;">@obj.Description</div>
                                     </div>
-                                    <div class="col-3 col-lg-1 pt-lg-4" style="font-size:11px;">
+                                    <div class="col-7 col-lg-2 pt-lg-2" style="font-size:11px;">
                                         <span style="font-size:17px;"> $@obj.Cost</span>
 
                                     </div>
 
-                                    <div class="col-3 col-lg-1 pt-lg-4" style="font-size:11px;">
-
-
-                                        <label asp-for="@Model.Quantities[index]"></label>
+                                    <div class="col-10 col-lg-1 pt-lg-2" style="font-size:11px;">
+        
                                         <input asp-for="@Model.Quantities[index]" class="form-control" width="100" />
-                                        <span asp-validation-for="@Model.Quantities[index]" class="text-danger"></span>
-
-
-
 
                                     </div>
 
 
 
-                                    <div class="col-2 col-lg-1 p-0 pt-lg-4 text-center">
+                                    <div class="col-2 col-lg-1 p-0 pt-lg-2 text-center">
                                         <a asp-action="Remove" asp-route-id="@obj.Id" class="btn btn-outline-danger">
                                             <i class="fas fa-trash"></i>
                                         </a>
