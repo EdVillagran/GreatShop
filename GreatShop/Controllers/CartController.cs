@@ -157,17 +157,26 @@ namespace GreatShop.Controllers
 
         public async Task<IActionResult> SummaryPostAsync()  // Dont need (ProductUserVM productUserVM) because of [BindProperty]
         {
-            //1 Send Email, then comfirmation page
+           
 
-            //Access template
-            var PathtoTemplates = _webHostEnvironment.WebRootPath + Path.DirectorySeparatorChar.ToString()
+            //Access templates
+            var PathtoAdminTemplates = _webHostEnvironment.WebRootPath + Path.DirectorySeparatorChar.ToString()
                 + "Templates" + Path.DirectorySeparatorChar.ToString() + "OrderInquiry.html";
+
+            var PathtoCustomerTemplates= _webHostEnvironment.WebRootPath + Path.DirectorySeparatorChar.ToString()
+                + "Templates" + Path.DirectorySeparatorChar.ToString() + "CustomerOrder.html";
 
             var subject = "Order Summary";
             string HtmlBody = "";
-            using (StreamReader sr = System.IO.File.OpenText(PathtoTemplates))
+            using (StreamReader sr = System.IO.File.OpenText(PathtoAdminTemplates))
             {
                 HtmlBody = sr.ReadToEnd();
+            }
+
+            string HtmlBody2 = "";
+            using (StreamReader sr = System.IO.File.OpenText(PathtoCustomerTemplates))
+            {
+                HtmlBody2 = sr.ReadToEnd();
             }
             //Name: { 0}
             //Email: { 1}
@@ -190,11 +199,16 @@ namespace GreatShop.Controllers
                 ProductUserVM.AppUser.PhoneNumber,
                 productListSB.ToString());
 
+            string messageBody2 = string.Format(HtmlBody2,
+                ProductUserVM.AppUser.FullName,
+                ProductUserVM.AppUser.Email,
+                ProductUserVM.AppUser.PhoneNumber,
+                productListSB.ToString());
 
             //SendEmailAsync takes in RecievingEmail, Subject, Message as paramaters
             await _emailSender.SendEmailAsync(WebConstants.EmailAdmin, subject, messageBody);
             //Add Another to User
-
+            await _emailSender.SendEmailAsync(WebConstants.EmailAdmin, subject, messageBody2);
             return RedirectToAction(nameof(OrderConfirmation));
         }
         public IActionResult OrderConfirmation()

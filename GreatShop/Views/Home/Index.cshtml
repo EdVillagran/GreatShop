@@ -3,7 +3,7 @@
     <!-- 1at One causes issues on NavBar-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
- 
+
     <style>
 
 
@@ -41,63 +41,62 @@
         .container2 {
             padding: 2px 16px;
         }
-
     </style>
 </head>
 <body>
+    <div class="container border-danger ">
+        <div class="jumbotron jumbotron-fluid">
 
-    <div class="jumbotron jumbotron-fluid">
+            <div class="container2 text-center" style="height:250px;">
+                <h1 style="color:goldenrod;">GreatShop</h1>
+                <p style="color:darkblue;">Performance Shop</p>
 
-        <div class="container2 text-center" style="height:250px;">
-            <h1 style="color:goldenrod;">GreatShop</h1>
-            <p style="color:darkblue;">Performance Shop</p>
+            </div>
 
         </div>
 
+        <div class="container2">
+            <div class="row">
+                <div class="col-sm-4  ">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">CLEARANCE</div>
+                        <div class="panel-body"><img src="~/Images/Company/Clearance3.jpg" class="img-responsive" style="height:200px" alt="Image"></div>
+
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="panel ">
+                        <div class="panel-heading">TODAYS HOT DEALS</div>
+                        <div class="panel-body"><img src="~/Images/Company/sale-tag.png" class="img-responsive" style="height:200px" alt="Sale"></div>
+
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">BLACK FRIDAY DEAL</div>
+                        <div class="panel-body"><img src="~/Images/Company/bfriday.png" class="img-responsive " alt="Image" style="height:200px"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div><br>
+
+        <div class="scrolling-wrapper">
+            @foreach (var obj in Model)
+            {
+
+                <div class="card">
+                    <a href="/../Product/Details/@obj.Id">
+                        <img class="card-img mx-auto" src="@WebConstants.ImagePath@obj.Image" width="100" height="100" />
+                    </a>
+                    <h4><b>@obj.Name</b></h4>
+                    <h4 class="pricetext center-block"><b>@string.Format("{0:c0}", @obj.Cost)</b></h4>
+                </div>
+            }
+
+
+        </div><br><br /><br><br /><br><br />
     </div>
-
-    <div class="container2">
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">CLEARANCE</div>
-                    <div class="panel-body"><img src="~/Images/Company/Clearance3.jpg" class="img-responsive" style="height:200px" alt="Image"></div>
-
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="panel panel-danger">
-                    <div class="panel-heading">TODAYS HOT DEALS</div>
-                    <div class="panel-body"><img src="~/Images/Company/sale-tag.png" class="img-responsive" style="height:200px" alt="Sale"></div>
-
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="panel panel-success">
-                    <div class="panel-heading">BLACK FRIDAY DEAL</div>
-                    <div class="panel-body"><img src="~/Images/Company/bfriday.png" class="img-responsive "  alt="Image" style="height:200px"></div>
-
-                </div>
-            </div>
-        </div>
-    </div><br>
-
-    <div class="scrolling-wrapper">
-        @foreach (var obj in Model)
-        {
-
-        <div class="card">
-            <a href="/../Product/Details/@obj.Id">
-                <img class="card-img mx-auto" src="@WebConstants.ImagePath@obj.Image" width="100" height="100" />
-            </a>
-            <h4><b>@obj.Name</b></h4>
-            <h4 class="pricetext center-block"><b>@string.Format("{0:c0}", @obj.Cost)</b></h4>
-        </div>
-        }
-
-
-    </div><br><br /><br><br /><br><br />
-
 
 
 </body>
