@@ -154,10 +154,11 @@ namespace GreatShop.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Summary")]
+        //Sends email to Client and Admin after purchase
 
         public async Task<IActionResult> SummaryPostAsync()  // Dont need (ProductUserVM productUserVM) because of [BindProperty]
         {
-           
+            
 
             //Access templates
             var PathtoAdminTemplates = _webHostEnvironment.WebRootPath + Path.DirectorySeparatorChar.ToString()
@@ -205,9 +206,9 @@ namespace GreatShop.Controllers
                 ProductUserVM.AppUser.PhoneNumber,
                 productListSB.ToString());
 
-            //SendEmailAsync takes in RecievingEmail, Subject, Message as paramaters
+            //SendEmail to Admin 
             await _emailSender.SendEmailAsync(WebConstants.EmailAdmin, subject, messageBody);
-            //Add Another to User
+            //Send email to client 
             await _emailSender.SendEmailAsync(WebConstants.EmailAdmin, subject, messageBody2);
             return RedirectToAction(nameof(OrderConfirmation));
         }
