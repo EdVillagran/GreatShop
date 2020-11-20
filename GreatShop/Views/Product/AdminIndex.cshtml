@@ -1,5 +1,5 @@
 ﻿<!-- To Retrieve Data -->
-@model IEnumerable<GreatShop.Models.Product>
+@model GreatShop.Models.ViewModels.CategoryVM
 
 <head>
     <style>
@@ -18,14 +18,14 @@
             <div class="col-6 text-right">
                 <a asp-action="Upsert" class="btn btn-primary">
                     <!--   class="fas fa-plus" &nbsp is for FontAwesome-->
-                    <i class="fas fa-plus"></i> &nbsp; Create New Product
+                    <i class="fas fa-plus"></i> &nbsp;  New Product
                 </a>
             </div>
         </div>
 
         <br /><br />
 
-        @if (Model.Count() > 0)
+        @if (Model.Products.Count() > 0)
         {
             <div style="overflow:auto; height:800px; width:1500px; position:center;">
                 <table id="myTable">
@@ -34,23 +34,27 @@
                         <th>Image</th>
                         <th class="pointer" onclick="sortTableAlpha(1)">Product Name</th>
                         <th>Description</th>
+                        <th>Category</th>
                         <th class="pointer" onclick="sortTableNum()">Cost</th>
+                        <th>Options</th>
 
                     </tr>
 
-                    @foreach (var obj in Model)
+                    @foreach (var obj in Model.Products.ToList())
                     {
 
                 <tr>
+                  
 
                     <td width="20%"><img src="@WebConstants.ImagePath@obj.Image" class="rounded" width="200" height="200" /></td>
                     <td width="20%">@obj.Name</td>
                     <td width="27%">@obj.Description</td>
+                    <td width="15%"> @obj.Category.Name</td>
                     <td width="20%">@obj.Cost</td>
 
 
                     <td class="text-center">
-                        <div class="w-75 btn-group" role="group">
+                        <div class="w- btn-group" role="group">
 
 
                             <a asp-route-Id="@obj.Id" asp-action="Upsert" class="btn btn-primary mx-1">
@@ -74,7 +78,7 @@
         }
         else
         {
-            <p> No category exists.</p>
+            <p> No Product exists.</p>
         }
 
 

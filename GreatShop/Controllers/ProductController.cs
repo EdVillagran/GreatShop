@@ -31,12 +31,12 @@ namespace GreatShop.Controllers
         {
             //Retrieve objects from database
 
-            IEnumerable<Product> objList = _db.Product;
-
-
-
-            return View(objList);
-
+            CategoryVM categoryVM = new CategoryVM()
+            {
+                Products = _db.Product.Include(u => u.Category),
+                Category = _db.Category
+            };
+            return View(categoryVM);
         }
 
         public IActionResult Index()

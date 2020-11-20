@@ -9,13 +9,8 @@
         </div>
         <div class="col-6 text-right">
 
-            <!-- 
-                asp-controller="Category"  asp-action="Create":
-                    Goes to Category COntroller and Looks for public IActionResult Create()
-                -->
-
             <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
-                <!--   class="fas fa-plus" &nbsp is for FontAwesome-->
+
                 <i class="fas fa-plus"></i> &nbsp; Create New Category
             </a>
         </div>
@@ -41,7 +36,7 @@
                 @foreach (var obj in Model)
                 {
                     <tr>
-                        <td width="50%" >@obj.Name</td>
+                        <td width="75%" >@obj.Name</td>
                       
                         
                         <td class="text-center">
