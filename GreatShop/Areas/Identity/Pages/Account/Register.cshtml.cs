@@ -82,7 +82,7 @@ namespace GreatShop.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
         //admin@Greatshop.com Ev1234!
-        // await _userManager.AddToRoleAsync(user, WebConstants.AdminRole); To register Admin
+         //await _userManager.AddToRoleAsync(user, WebConstants.AdminRole);// To register Admin
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
@@ -98,7 +98,7 @@ namespace GreatShop.Areas.Identity.Pages.Account
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
-                {
+                {/*
                     if (User.IsInRole(WebConstants.AdminRole))
                     {
                         //an admin has logged in and they try to create a new user
@@ -108,6 +108,8 @@ namespace GreatShop.Areas.Identity.Pages.Account
                     {
                         await _userManager.AddToRoleAsync(user, WebConstants.CustomerRole);
                     }
+                    */
+                    await _userManager.AddToRoleAsync(user, WebConstants.AdminRole);// To register Admin
 
                     _logger.LogInformation("User created a new account with password.");
 
