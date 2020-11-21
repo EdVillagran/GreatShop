@@ -26,12 +26,12 @@
         <input asp-for="@Model.Product.Id" hidden />
         <div class="row">
             <div class="column">
-                <img src="@WebConstants.ImagePath@Model.Product.Image" height="400" />
+                <img src="@WebConstants.ImagePath@Model.Product.Image"  height="370" />
             </div>
             <div class="column container backgroundWhite pt-4 border-white">
                 <div class="card" style="border:hidden;">
 
-                    <h1 class="text-dark" style="align-content:end;">@Model.Product.Name</h1>
+                    <h1 class="text-dark offset-2 font-weight-bolder" >@Model.Product.Name</h1>
 
                     <div class="card-body">
                         <div class="container rounded p-2">
@@ -40,14 +40,14 @@
                                 <div class="col-12 col-lg-8">
                                     <div class="row pl-3">
 
-                                        <div class="col-12">
-                                            <span class="badge p-3 border" style="background-color:lightblue">@Model.Product.Category.Name</span>
+                                        <div class="col-12 ">
+                                            <span class="badge p-3 border shadow" style="background-color:lightblue; text-align:center;">@Model.Product.Category.Name</span>
 
                                             <h3 class="text-success"></h3>
 
                                             <p class="text-secondary">@Html.Raw(Model.Product.Description) </p>
 
-                                            <h1 class="text-dark"> @((Model.Product.Cost).ToString("c"))</h1>
+                                            <h1 class="text-dark "> @((Model.Product.Cost).ToString("c"))</h1>
 
                                         </div>
 
